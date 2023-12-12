@@ -1,0 +1,249 @@
+main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .issues-fixed{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .status {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  aside{
+      display: flex;
+      flex-direction: column;
+      width: 25vw;
+      max-width: fit-content;
+      border: 2px hwb(185 6% 42%) solid;
+      height: 100vh;
+      overflow: hidden;
+  }
+  
+  aside img{
+      width: 80%;
+      max-width: 250px;
+      margin-top: 5px;
+      margin: 10px auto;
+      border-radius: 20px;
+  }
+  aside h1{
+    font-size: 1.7em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 5px;
+  }
+  aside h2 {
+      color: #006D77;
+      font-size: 1.6em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+  }
+  aside h3{
+      font-size: 1.2em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      padding: 5px;
+  }
+  aside .aside-cards{
+      width: 90%;
+      height: fit-content;
+      left: 25px;
+      padding: 15px;
+      margin: 10px auto;
+      border: 2px #108A95 solid;
+      text-align: start;
+  }
+  
+  .guidline-link{
+      color: #00474E;
+      font-size: 1.5em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      width: 100%;
+  }
+  aside .aside-cards p{
+      color: #000;
+      font-size: 1.0em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+  }
+  
+  .results{
+      width: 100%;
+  }
+  .scroll-container{
+      max-height: 720px;
+      overflow-y: scroll;
+      border-radius: 5px;
+      padding: 10px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+  }
+  .result-list-ltem{
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: right;
+      box-shadow: rgba(104, 104, 104, 0.557) 0px 0px 20px;
+      width: 90%;
+      padding: 10px;
+  }
+  
+  .cards-count {
+      display: inline-block;
+      font-size: 1.5em;
+      font-weight: bold;
+      box-shadow: 0px 4px 17px 0px rgba(0, 0, 0, 0.25);
+      width: auto;
+      height: auto;
+      padding: 30px;
+      margin: 25px;
+      text-align: center;
+  }
+  .progress {
+      margin: 10px;
+  }
+  
+  .status .cards-count .percentage{
+      color: red;
+      text-align: center;
+  }
+  
+  .accordion{
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: right;
+      box-shadow: rgba(104, 104, 104, 0.557) 0px 0px 20px;
+      width: 90%;
+      margin-bottom: 25px;
+  }
+  .accordion .error_code{
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+  }
+  .accordion span{
+      transform: rotate(90deg);
+      float: left;
+      margin-left: 10px;
+      stroke-width: 3px;
+  }
+  input[type="radio"]{
+      display: none;
+  }
+  .accordion .suggestion{
+      overflow: hidden;
+      color: #006D77;
+      max-height: 0 ;
+      margin: 15px;
+      transition: max-height 0.1s, padding 0.2s;
+  }
+  .accordion input[type="radio"]:checked + .error_code +.suggestion{
+      max-height: 100%;
+      padding: 10px 10px 20px;
+  }
+  .button-container{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  a.download{
+      display: inline-block;
+      width: fit-content;
+      height: fit-content;
+      background-color: transparent;
+      margin: 10px;
+      border: none;
+      text-decoration: none;
+  }
+  a.download:hover {
+      text-decoration: none;
+  }
+  .button-container a.download img{
+      width: 75px;
+  }
+  .download-discreption{
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+  }
+  @media screen and (max-width: 768px) {
+    main {
+      flex-direction: column;
+    }
+  
+    aside {
+      width: 70%;
+      max-width: none;
+      height: auto;
+      border: 0;
+      overflow: auto;
+      border-top: 2px solid #108A95;
+      border-left: 2px solid #108A95;
+      border-right: 2px solid #108A95;
+      margin: 0 auto;
+      background-color: #cccccc10;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 20px;
+    }
+  
+    aside img {
+      display: none;
+    }
+  
+    .aside-cards{
+      width: 100%;
+      
+    }
+  
+  
+    aside h1 {
+      font-size: 1.5em;
+    }
+
+    .status {
+      width: 70%;
+      justify-content: center;
+      margin: 0 auto;
+      flex-direction: row;
+      border-bottom: 2px solid #108A95;
+      border-right: 2px solid #108A95;
+      border-left: 2px solid #108A95;
+      background-color: #cccccc10;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    
+    .cards-count{
+      width: 30%;
+      height: 150px;
+      padding: 20px;
+    }
+    .cards-count p, .cards-count span.counted-errors, .cards-count span.percentage{
+      font-size: 0.7em;
+      margin: 0px;
+    }
+  
+    .result-list-ltem, .accordion{
+      width: 100%;
+    }
+  
+    .button-container {
+      justify-content: center;
+    }
+  }

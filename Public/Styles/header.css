@@ -1,0 +1,255 @@
+/* Font */
+@font-face {
+  font-family: "Lato";
+  src: url("../Fonts/Lato-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  height: 100%;
+  box-sizing: border-box;
+}
+body{
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+  padding-bottom: 15rem;
+  box-sizing: inherit;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar{
+  background-color: #2929293a;
+  width: 10px;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #0000005a;
+  border-radius: 5px;
+}
+
+main{
+  margin-top: 30px;
+}
+
+/* Header Styles */
+header {
+  height: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  padding: 20px 3%;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+  z-index: 100;
+}
+/* Header background with blur effect */
+header::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  backdrop-filter: blur(50px); 
+  z-index: -1;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Logo styles */
+.Logo{
+  height: 112px;
+}
+
+/* Navigation styles */
+nav{
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+nav a{
+  font-size: 24px;
+  color: #006D77;
+  text-decoration: none;
+  font-weight: 800;
+  margin-left: 40px;
+}
+
+/* Navigation underline effect */
+header nav a span {
+  display: block;
+  background-color: #006d77;
+  padding: 0;
+  height: 3px;
+  width: 0%;
+  transition: 0.5s;
+}
+header nav a:hover span {
+  width: 100%;
+  transition: 0.5s;
+}
+header nav a span.selected {
+  display: block;
+  background-color: #006d77;
+  padding: 0;
+  height: 3px;
+  width: 100%;
+  transition: 0.5s;
+}
+header nav a:hover span.selected {
+  background-color: white;
+  transition: 0.5s;
+}
+
+/* Checkbox styles for responsive menu */
+#check{
+  display: none;
+}
+.menu-icon,.close{
+  position: absolute;
+  right:5%;
+  width: 40px;
+  cursor: pointer;
+  display: none;
+}
+.icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Language button styles */
+header div a.language {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  height: 50px;
+  font-family: "Lato", sans-serif;
+  color: #006d77;
+  margin-left: 20px;
+  padding: 10px;
+  transition: 0.5s;
+  border-radius: 50px;
+}
+header div a.language:hover {
+  background-color: #006d77;
+  color: white;
+  transition: 0.5s;
+}
+
+/*this css for loged in user*/
+.user-name {
+  font-size: 24px;
+  color: #006D77;
+  text-decoration: none;
+  font-weight: 800;
+  margin-left: 40px;
+}
+
+.user-info-dropdown {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.user-info-menu {
+  display: none;
+  position: absolute;
+  width: 170px;
+  bottom: -80px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 1;
+}
+
+.user-info-dropdown:hover .user-info-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-logedin{
+  display: none;
+}
+/* Media queries for responsive design */
+@media (max-width: 1037px){
+  header{
+    padding: 20.8px 5%;
+  }
+  nav a, .user-info-dropdown p, .user-info-menu a{
+    font-size: 20px;
+  }
+}
+@media (max-width: 1001px){
+  header{
+    padding: 15.8px 2%;
+  }
+}
+@media (max-width: 900px){
+  .menu-icon{
+    display: inline-flex;
+  }
+  #check:checked~label .menu-icon{
+    display: none;
+  }
+  .user-info-dropdown{
+    display: none;
+  }
+  #check:checked~label .close{
+    display: block;
+  }
+  .user-logedin{
+    display: block;
+  }
+  nav{
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #ffffff;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .1);
+    overflow: hidden;
+    transition: .3s ease;
+  }
+  #check:checked~nav{
+    height: fit-content;
+  }
+  nav a{
+    display: block;
+    font-size: 17.6px;
+    margin: 24px 0;
+    text-align: center;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: .3s ease;
+  }
+  nav a, .user-info-dropdown p, .user-info-menu a{
+    font-size: 17.6px;
+  }
+  #check:checked~nav a{
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay:calc(.15s * var(--i));
+  }
+}

@@ -1,0 +1,52 @@
+section h2{
+  color: #006d77;
+  font-size: 24px;
+}
+section p{
+  font-size: 16px;
+}
+section label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
+button.btn{
+  float: start;
+  padding: 15px 0;
+  text-align: center;
+  margin: 20px 10px;
+  font-weight: bold;
+  background-color: #006D77;
+  color: white;
+  border: 2px solid #006D77;
+  border-radius: 25px !important;
+}
+
+button.btn:hover{
+  background-color: #00484e;
+  border: 2px solid white;
+  color: white;
+}
+section{
+  height: 100%;
+  color: white;
+}
+.glass{
+  background: linear-gradient(135deg, #006d7798, #006d771e);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.no-resize {
+  resize: none;
+}
+
+@media (max-width: 576px) {
+  .img-fluid{
+    display: none;
+  }
+}

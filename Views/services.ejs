@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الخدمات</title>
+    <!-- Set the page's icon -->
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png"/>
+    <!-- Import the index CSS -->
+    <link rel="stylesheet" href="/Styles/services.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <!-- Import the page's JavaScript -->
+    <!-- None so far for this page -->
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Import JS-->
+    <script src="/Scripts/services.js"></script>
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>
+    <!-- Set the header and footer -->
+    <script>
+
+      function checkUsernameCookie() {
+        let cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          let parts = cookies[i].split('=');
+          if (parts[0].trim() === 'username') {
+            return true;
+          }
+        }
+        return false;
+      }
+  
+      if (checkUsernameCookie()) {
+        $(function () {
+          $('#header').load('/assets/signedHeader.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      } else {
+        $(function () {
+          $('#header').load('/assets/header.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Loading screen -->
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner">
+        <div class="image-container">
+          <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+        </div>
+      </div>
+      <p id="loading-text" class="loading-text d-none">نرجو منكم الانتظار قليلاً، حيث يتم حالياً إجراء عملية تحليل. قد تحتاج هذه العملية بضع دقائق.</p>
+    </div>
+    <!-- Begin the header -->
+    <header id="header"></header>
+    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert" id="alert">
+      <p id="error-message"></p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% if(errorMessage){ %>
+      <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+        <%= errorMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <!-- Begin the main -->
+    <main>
+      <form action="/validation-request" method="post" id="validation-request">
+        <div class="container">
+          <div class="row justify-content-center" id="submit-url">
+            <div class="col-8">
+              <div class="input-wrapper" dir="ltr">
+                <button type="submit" class="enter-btn">ادخل</button>
+                <input type="url" id="link" name="link" placeholder="أدخل الرابط" class="form-control">
+              </div>
+              <br>
+            </div>
+          </div>
+          <br>
+          <div id="cards" class="justify-content-center row  container-fluid d-none">
+            <div role="button" id="button1" class="card col-3">
+              <h4>تحليل بسيط</h4>
+              <p>يحتوي على حساب نقاط الموقع وإيجاد الأخطاء فقط</p>
+              <img src="/Media/Images/Services/speedometer.png" alt="صورة بشكل عداد تعبر عن خدمة التحليل البسيط">
+            </div>
+            
+            <div role="button" id="button2" class="card col-3">
+              <h4>تحليل متقدم</h4>
+              <p>يحتوي على حساب نقاط الموقع وإيجاد الأخطاء وتقديم الإقتراحات</p>
+              <img src="/Media/Images/Services/observation.png" alt="صورة بشكل مكبر تعبر عن خدمة التحليل المتقدم">
+            </div>  
+            
+            <div role="button" id="button3" class="card col-3">
+              <h4>تحليل تام</h4>
+              <p>يحتوي على حساب نقاط الموقع وإيجاد الأخطاء وتقديم الإقتراحات بالإضافة لتعديل الكود تلقائيًا</p>
+              <img src="/Media/Images/Services/coding.png" alt="صورة بشكل اقواس برمجية تعبر عن خدمة التحليل التام">
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="hidden" name="typeOfRequest" value="initial calue">
+      </form>
+  </main>
+    
+    <!-- BeginTthe Footer -->
+    <footer id="footer"></footer>
+  </body>
+</html>

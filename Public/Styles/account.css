@@ -1,0 +1,159 @@
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 500px;
+  min-height: max-content;
+}
+input.btn-red{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 25px !important;
+}
+input.btn-red:hover{
+    background-color: red;
+    color: white;
+}
+.col-4,.col-8{
+  margin-left: 6px;
+  margin-right: 6px;
+}
+input.btn{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    font-weight: bold;
+    border: 2px solid #006D77;
+    border-radius: 25px !important;
+}
+
+input.btn:hover{
+    background-color: #00484e;
+    color: white;
+}
+
+.userinfo{
+    height: fit-content;
+}
+label{
+  font-size: 20px;
+  font-weight: bold;
+}
+.text-danger{
+  font-size: 15px;
+}
+/* Style the tab */
+.tab {
+    float: inline-start;
+    font-weight: bold;
+    font-size: 20px;
+    width: 16%;
+    height: fit-content;
+    height: 100%;
+    border-left: 1px solid #ccc;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: start;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #006d77;
+    color: white;
+    transition: 0.2s;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    border-right: 4px solid #00484e ;
+    border-radius: 2px;
+    transition: 0.2s;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    float: inline-start;
+    padding: 0px 12px;
+    width: 70%;
+    border-left: none;
+    height: 150px;
+    justify-content: start;
+  }
+
+  #alert{
+    width: 100%;
+    display: block;
+    position: absolute;
+  }
+
+  /* Media query for smaller screens */
+  @media screen and (max-width: 1000px) {
+    
+    .tab{
+      font-size: 16px;
+    }
+    
+    .tab button {
+      padding: 15px; 
+    }
+  
+    .col-4, .col-8 {
+      width: 100%; 
+      margin-bottom: 10px; 
+    }
+    label{
+      font-size: 20px;
+    }
+    div h3,h4{
+      font-size: 20px;
+    }
+    button.btn, button.btn-red {
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+  
+    .tab {
+      border-left: none;
+    }
+  
+    .tab button {
+      padding: 15px; 
+    }
+  
+    form {
+      padding: 10px; 
+    }
+  
+    .col-4, .col-8 {
+      width: 100%; 
+      margin-bottom: 5px;
+    }
+    div h3,h4{
+      font-size: 14px;
+    }
+    label{
+      font-size: 14px;
+    }
+    button.btn, button.btn-red {
+      width: 40%; 
+    }
+  }

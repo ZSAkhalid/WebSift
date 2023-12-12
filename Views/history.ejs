@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الطلبات السابقة</title>
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png" />
+    <link rel="stylesheet" href="/Styles/history.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>  
+  <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function checkUsernameCookie() {
+        let cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          let parts = cookies[i].split("=");
+          if (parts[0].trim() === "username") {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      $(function () {
+        if (checkUsernameCookie()) {
+          $("#header").load("/assets/signedHeader.html");
+        } else {
+          $("#header").load("/assets/header.html");
+        }
+        $("#footer").load("/assets/footer.html");
+      });
+    </script>
+  </head>
+  <body>
+      <!-- Loading screen -->
+      <div class="loading-container" id="loading">
+        <div class="loading-spinner">
+          <div class="image-container">
+            <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+          </div>
+        </div>
+      </div>
+    <!-- Begin the header -->
+    <header id="header"></header>
+    <main>
+      <section class="container-fluid">
+        <h2>تاريخ طلباتك</h2>
+        <div class="container">
+          <div id="linkForm">
+            <input type="search" id="search" name="search" placeholder="ابحث" class="form-control"/>
+            <br />
+          </div>
+
+          <div class="container results-container" id="resultsContainer">
+            <% for(let i = 0; i < requests.length; i++){
+              const request = requests[requests.length - i - 1];
+              const daysAgo = Math.floor((new Date() - new Date(request.createdAt)) / (1000 * 60 * 60 * 24)); 
+              const domain = new URL(request.link).hostname.split('.').slice(-2).join('.'); %>
+            <div class="rectangle">
+              <% if (request.type === "premium") { %>
+              <p title="<%= request.link %>" class="col-8">
+                طلب تحليل صفحة  لموقع <bdi><%= domain %></bdi>
+                <bdi><%= daysAgo %></bdi> يومًا مضت
+              </p>
+              <a target="_blank" class="download" href="<%= request.report %>">
+                <img
+                  src="Media/Images/resulte/download-report.png"
+                  alt="تحميل ملف التقرير"
+                />
+              </a>
+              <a target="_blank" class="download" href="<%= request.modifiedHTML %>">
+                <img
+                  src="Media/Images/resulte/download-code.png"
+                  alt="تحميل ملف الكود"
+                />
+              </a>
+              <% } else if (request.type === "advanced" || request.type === "basic") { %>
+              <p title="<%= request.link %>" class="col-10">
+                طلب تحليل صفحة لموقع <bdi><%= domain %></bdi>
+                <bdi><%= daysAgo %></bdi> يومًا مضت
+              </p>
+              <a target="_blank" class="download" href="<%= request.report %>">
+                <img
+                  src="Media/Images/resulte/download-report.png"
+                  alt="تحميل ملف التقرير"
+                />
+              </a>
+              <% } %>
+            </div>
+            <% }; %>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/Scripts/history.js"></script>
+  </body>
+</html>

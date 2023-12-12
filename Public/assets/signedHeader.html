@@ -1,0 +1,47 @@
+<script>
+    function getCookie(name) {
+        let cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+            let parts = cookies[i].split('=');
+            if (parts[0].trim() === name) {
+                return parts.slice(1).join('=');
+            }
+        }
+        return null;
+    }
+    const firstName = decodeURIComponent(getCookie('username'));
+    document.getElementById("greeting").innerHTML = "مرحباً " + firstName;
+</script>
+<!--loged in -->
+<!-- Checkbox for responsive menu -->
+<input type="checkbox" id="check">
+<!-- Menu and close icons with associated label -->
+<label class="icons" for="check">
+    <img class="menu-icon" src="./Media/Images/Header/menu-animated.png" alt="menu image">
+    <img class="close" src="./Media/Images/Header/close.png" alt="close menu">
+</label>
+
+<!-- Navigation links -->
+<nav>
+    <div class="user-info-dropdown">
+        <p class="user-name" alt="ادارة حسابك -اسم المستخدم" id="greeting"><span></span></p>
+        <div class="user-info-menu">
+            <a href="/account-management" alt="ادارة حسابك"> ادارة حسابك<span></span></a>
+            <a href="/logout" alt="تجسيل خروج">تسجيل خروج <span></span></a>
+        </div>
+    </div>
+    <a class="user-logedin" Style="--i:0;" href="/account-management" alt="ادارة حسابك"> ادارة حسابك<span></span></a>
+    <a href="/services" Style="--i:1;" alt="صفحة الخدمات">الخدمات<span></span></a>
+    <a href="/history" Style="--i:2;" alt="صفحة طلباتك السابقة">طلباتك السابقة<span></span></a>
+    <a href="/references" Style="--i:3;" alt="صفحة المصادر">المصادر<span></span> </a>
+    <a href="/contact" Style="--i:4;" alt="صفحة تواصل معنا">تواصل معنا<span></span></a>
+    <a href="/about" Style="--i:5;" alt="صفحة تعريفية">من نحن؟<span></span> </a>
+    <a class="user-logedin" Style="--i:6;" href="/logout" alt="تجسيل خروج">تسجيل خروج <span></span></a>
+    </ul>
+</nav>
+
+<!-- Language and logo section -->
+<div class="d-flex align-items-center">
+    <a href="/" alt="الصفحة الرئيسية"><img class="Logo" src="./Media/Images/WebSift/WibSift.png" alt="WebSift Logo" />
+    </a>
+</div>

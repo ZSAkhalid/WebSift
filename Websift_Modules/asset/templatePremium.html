@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Analysis Report</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 8px;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background: #f4f4f4;
+            font-size: 14px;
+            line-height: 1.6;
+            display: block;
+        }
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .report-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #006d77;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .report-details {
+            background-color: #e8f0f2;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #006d77;
+        }
+        .report-details h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #006d77;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .report-table th, .report-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .report-table th {
+            background-color: #006d77;
+            color: white;
+            border: none;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .report-table .error-code {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .table-footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+        .contact-info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #006d77;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .table-footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #777;
+            background-color: #e8f0f2;
+        }
+        @page {
+            size: A4;
+            margin: 0mm;
+        }
+        .header-info-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 30px;
+            min-height: 80px;
+        }
+        .header-info h3{
+            margin: 0;
+            color: #006d77;
+        }
+        .header-info{
+            width: 40%;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px#b7bdbf;
+            height: 80px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .header-info .progress-container{
+            margin-top: 20px;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        .progress-bar {
+            width: {{progress}}%;
+            height: 30px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table style="width: 100%; height: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="vertical-align: top;">
+                <div class="report-wrapper">
+                    <div class="header">
+                        <img src="{{ logo_url }}" alt="WebSift - ويب سيفت">
+                        <h1>تقرير تحليل إمكانية الوصول</h1>
+                    </div>
+                    <div class="content">
+                        <div class="report-details">
+                            <h2>تفاصيل التقرير</h2>
+                            <p>الموقع الذي تم تحليله: <a href="{{ full_link }}">{{ analyzed_website }}</a></p>
+                            <p>رقم الطلب: {{ request_id }}</p>
+                            <div class="header-info-container">
+
+                                <div class="header-info">
+                                    <h3>نقاط الموقع</h3>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">{{progress}}%</div>
+                                    </div>
+                                </div>
+
+                                <div class="header-info">
+                                    <h3>عدد الأخطاء</h3>
+                                    <p style="font-weight: 700;">{{number_of_errors}}</p>
+                                </div>
+                            </div>
+                            
+                            
+                            </div>
+                        <table class="report-table">
+                            <thead>
+                                <tr>
+                                    <th>كود الخطأ</th>
+                                    <th>الرسالة</th>
+                                    <th>الإقتراحات</th>
+                                    <th>السطر</th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for error in errors %}
+                                <tr dir="rtl">
+                                    <td dir="rtl" class="error-code">{{ error.error_code }}</td>
+                                    <td dir="rtl">{{ error.message }}</td>
+                                    <td dir="rtl">
+                                        <ul dir="rtl">
+                                        {% for sugg in error.suggestion%}
+                                        <li dir="rtl">•{{ sugg }}</li>
+                                        {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>{{ error.line }}</td>
+                                    <td>{{ error.state }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: bottom;">
+                <div class="table-footer">
+                    تم إنشاء التقرير بتاريخ: {{ timestamp }}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <footer class="contact-info">
+        <p>للاستفسارات، يرجى التواصل معنا عبر البريد الإلكتروني:</p>
+        <p>WebSift.help@gmail.com</p>
+    </footer>
+</body>
+</html>

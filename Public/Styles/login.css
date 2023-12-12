@@ -1,0 +1,258 @@
+body{
+  background-image: linear-gradient(to right top, #005c6b, #005e66, #006d77, #007d89, #008e9b, #009fae, #00afc2, #00c0d6, #00d0e9, #00e0fc, #75efff);
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  min-height: 650px;
+
+}
+
+main{
+  height: 650px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+main.container{
+  padding: 0;
+  display: flex;
+}
+/* Without glass */
+.slider{
+  height: 100%;
+  width: 35%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #006D77;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23006D77' cx='50' cy='0' r='50'/%3E%3Cg fill='%2300717d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23007683' cx='50' cy='100' r='50'/%3E%3Cg fill='%23007a89' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23007f90' cx='50' cy='200' r='50'/%3E%3Cg fill='%23008396' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300889c' cx='50' cy='300' r='50'/%3E%3Cg fill='%23008ca3' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%230091aa' cx='50' cy='400' r='50'/%3E%3Cg fill='%230095b0' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23009ab7' cx='50' cy='500' r='50'/%3E%3Cg fill='%23009ebe' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300a3c5' cx='50' cy='600' r='50'/%3E%3Cg fill='%2300a7cc' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300acd3' cx='50' cy='700' r='50'/%3E%3Cg fill='%2300b0da' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300b5e2' cx='50' cy='800' r='50'/%3E%3Cg fill='%2300bae9' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300bef0' cx='50' cy='900' r='50'/%3E%3Cg fill='%2300c3f8' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%2300C7FF' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: contain;
+}
+/* Glass */
+/* .slider{
+  height: 100%;
+  width: 35%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg,rgba(255,255,255,0.1), rgba(255,255,255,0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-top-right-radius: 55px;
+  border-bottom-right-radius: 55px;
+} */
+.login{
+  height: 100%;
+  background-color: white;
+  width: 65%;
+}
+.login div a img{
+  width: 100px;
+}
+.login div span.line{
+  background-color: rgba(0, 0, 0, 0.519);
+  width: 100%;
+  height: 2px;
+  display: block;
+}
+.login div h3{
+  display: inline-block;
+  color: #006d77;
+}
+form{
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-field{
+  margin-bottom: 0;
+  margin: 20px auto;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  padding-right: 15%;
+  padding-left: 15%;
+  height: fit-content;
+}
+.input-field .errorMessage{
+  margin: 0;
+  padding: 0;
+  color: red;
+  font-size: 12px;
+}
+input{
+  position: absolute;
+  width: 70%;
+  outline: none;
+  font-size: 14px;
+  padding: 0 30px;
+  line-height: 40px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  transition: 0.1s ease;
+  z-index: 2;
+  background-color: transparent;
+}
+.labelline{
+  position: absolute;
+  font-size: 18px;
+  color: gray;
+  padding: 0 25px;
+  margin: 0 20px;
+  background-color: white;
+  transition: 0.2s ease;
+}
+input:focus,
+input.has-value {
+  border: 2px solid #00adbd;
+}
+
+input:focus + .labelline,
+input.has-value + .labelline{
+  color: #00adbd;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 6px;
+  transform: translate(15px, -11px) scale(0.78);
+  z-index: 3;
+  border-right: 1px solid;
+  border-left: 1px solid;
+  border-right-color: #00adbd;
+  border-left-color: #00adbd;
+}
+
+.link-div{
+  display: block;
+  margin: 0 auto;
+}
+a.link{
+  text-decoration: none;
+  color: #008490;
+  font-size: 14px;
+}
+a.link:hover{
+  text-decoration: underline;
+}
+button.btn{
+  display: block;
+  margin: 20px auto;
+  padding: 15px 0;
+  text-align: center;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #006D77;
+  border: 2px solid #006D77;
+  border-radius: 25px !important;
+}
+
+button.btn:hover{
+  background-color: #00484e;
+  border: 2px solid white;
+  color: white;
+}
+
+.slider h3{
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.363);
+}
+.slider h5{
+  margin-top: 5%;
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.363);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.create-account{
+  height: 80px;
+  padding: 25px;
+  text-align: center;
+  margin-top: 2%;
+}
+.create-account a {
+  color: #006D77;
+  background-color: white;
+  background-image: linear-gradient(to right, white, white);
+  border: 1px solid #006d77;
+  border-radius: 25px;
+  padding: 20px;
+  text-decoration: none;
+  font-size: medium;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.create-account a:hover {
+  color: #00484e;
+  background-image: linear-gradient(to right, #00eaff, #9AECDB);
+  box-shadow: 0 6px 12px rgba(0, 234, 255, 0.3);
+  transform: scale(1.05);
+  text-decoration: none;
+  text-shadow: 1px 1px 2px #00eaff;
+}
+
+
+#alert{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  width: 100%;
+}
+.sign-up-link{
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  button.btn{
+    font-size: 14px;
+    width: 45%;
+  }
+  .create-account a{
+    font-size: 14px;
+  }
+  .labelline{
+    font-size: 14px;
+  }
+  main.container{
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .slider{
+    display: none;
+  }
+  .login{
+    width: 90vw;
+  
+  }
+  .logo-and-title h3.m-2{
+    font-size: 22px;
+  }
+  .sign-up-link{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 576px ) {
+
+  .logo-and-title h3.m-2{
+    font-size: 20px;
+  }
+
+}

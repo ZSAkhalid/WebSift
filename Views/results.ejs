@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if (typeOfRequest.toLowerCase() == "basic") {%>
+      <title>ويب سيفت - تحليل بسيط</title>
+    <%} %>
+    <% if (typeOfRequest.toLowerCase() == "advanced") {%>
+      <title>ويب سيفت - تحليل متقدم</title>
+    <%} %>
+    <% if (typeOfRequest.toLowerCase() == "premium") {%>
+      <title>ويب سيفت - تحليل تام</title>
+    <%} %>
+    <!-- Set the page's icon -->
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png"/>
+    <!-- Import the resulte CSS -->
+    <link rel="stylesheet" href="/Styles/results.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <!-- Import the page's JavaScript -->
+    <!-- None so far for this page -->
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>
+    <!-- Set the header and footer -->
+    <script>
+
+      function checkUsernameCookie() {
+        let cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          let parts = cookies[i].split('=');
+          if (parts[0].trim() === 'username') {
+            return true;
+          }
+        }
+        return false;
+      }
+  
+      if (checkUsernameCookie()) {
+        $(function () {
+          $('#header').load('/assets/signedHeader.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      } else {
+        $(function () {
+          $('#header').load('/assets/header.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Loading screen -->
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner">
+        <div class="image-container">
+          <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+        </div>
+      </div>
+    </div>
+    <!-- Begin the header -->
+    <header id="header"></header>
+
+
+    
+    
+
+    <main>
+      <aside class="text-center">
+        <img src="..\Media\Images\resulte\aside-header.png" alt="صورة تعبر عن نتائج تحليل الموقع">
+        <h1>نتائج تحليل موقع:</h1>
+        <h2><%=strippedURL%></h2>
+        <h3>ننصحك بمراجعة المصادر التالية لرفع كفاءة الموقع وإمكانية الوصول</h3>
+        
+        <div class="aside-cards">
+          <a href="https://www.w3.org/TR/WCAG/" target="_blank" class="guidline-link">WCAG</a>
+          <p>هي مجموعة من المبادئ والإرشادات التي تهدف إلى تحسين إمكانية الوصول إلى محتوى الويب لذوي الاحتياجات الخاصة</p>
+        </div>
+        <br>
+        <div class="aside-cards">
+          <a href="https://www.w3.org/TR/html-aria/" target="_blank" class="guidline-link">WAI-ARIA</a>
+          <p>هي مجموعة من المبادئ والإرشادات التي تهدف إلى تحسين إمكانية الوصول إلى محتوى الويب لذوي الاحتياجات الخاصة</p>
+        </div>
+      </aside>
+      <div class="issues-fixed">
+      <section class="status">
+        <div class="cards-count">
+          <p>مجموع الأخطاء</p>
+          <span class="counted-errors"><%= resultsFromPython.length %></span>
+        </div>
+        <div class="cards-count">
+          <p >مجموع النقاط</p>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= progress %>%;" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100" ></div>
+          </div>
+          <p class="percentage"><%=progress%>%</p>
+        </div>
+      </section>
+      
+
+      
+      <div class="container">
+        <div class="results">
+          <h1>المشاكل</h1>
+          <div class="scroll-container">
+            <% if (typeOfRequest == "basic"){ %>
+              <% for (let i = 0; i < resultsFromPython.length; i++) { %>
+                  <p class="result-list-ltem"><%= resultsFromPython[i].error_code %> <%= resultsFromPython[i].message %></p>
+                <% } %>
+            <%} %>
+
+            <% if (typeOfRequest == "advanced"){ %>
+              <% for (let i = 0; i < resultsFromPython.length; i++) { %>
+                <div class="accordion"> <span class="accordion-arrow">&#x3e</span>
+                    <input type="radio" name="accordion" id="<%=i%>" >
+                    <label for="<%=i%>" class="error_code"><%= resultsFromPython[i].error_code %>
+                      <%= resultsFromPython[i].message %></label>
+                    <div class="suggestion">
+                      <ul>
+                        <% for(let j = 0; j < resultsFromPython[i].suggestion.length; j++) { %>
+                        <li><%= resultsFromPython[i].suggestion[j] %></li>
+                        <%}%>
+                      </ul>
+                    </div>
+                </div>
+                <% } %>
+            <%} %>
+
+            <% if (typeOfRequest == "premium"){ %>
+              <% for (let i = 0; i < resultsFromPython.length; i++) { %>
+                <% if (resultsFromPython[i].state == 'unfixed'){ %>
+                  <div class="accordion"> <span class="accordion-arrow">&#x3e</span>
+                      <input type="radio" name="accordion" id="<%=i%>" >
+                      <label for="<%=i%>" class="error_code"><%= resultsFromPython[i].error_code %>
+                        <%= resultsFromPython[i].message %></label>
+                      <div class="suggestion">
+                        <ul>
+                          <% for(let j = 0; j < resultsFromPython[i].suggestion.length; j++) { %>
+                          <li><%= resultsFromPython[i].suggestion[j] %></li>
+                          <%}%>
+                        </ul>
+                      </div>
+                  </div>
+                  <% } %>
+                <% } %>
+            <%} %>
+        </div>
+        <% if (typeOfRequest == "premium"){ %>
+          <div class="container">
+            <div class="results">
+              <h1>تم إصلاحه</h1>
+              <div class="scroll-container">
+                <% if (typeOfRequest == "premium"){ %>
+                  <% for (let i = 0; i < resultsFromPython.length; i++) { %>
+                    <% if (resultsFromPython[i].state == 'fixed'){ %>
+                      <p class="result-list-ltem"><%= resultsFromPython[i].error_code %> <%= resultsFromPython[i].message %></p>
+                    <% } %>
+                <%} %>
+                <% } %>
+              </div>
+            </div>
+            </div>
+          <%} %>
+          </div>
+      </div>
+      </div>
+      </div>
+    </main>
+    <div class="download-discreption">
+      <p>تحميل مخرجات التحليل</p>
+    </div>
+    <div class="button-container">
+      <a class="download" href="<%= reportLink %>" target="_blank"><img src="/Media/Images/resulte/download-report.png" alt="تحميل ملف التقرير"></a>
+
+      <% if (typeOfRequest == "premium"){ %>
+      <a class="download" href="<%= fixedLink %>" target="_blank"><img src="/Media/Images/resulte/download-code.png" alt="تحميل ملف الكود"></a>
+      <%} %>
+    </div>
+  
+    <!-- BeginTthe Footer -->
+    <footer id="footer"></footer>
+  </body>
+</html>

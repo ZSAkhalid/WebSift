@@ -1,0 +1,25 @@
+main{
+    width: 100%;
+    text-align: center;
+}
+
+.image-404{
+    width: 30vw;
+}
+
+p{
+    font-size: 1vw;
+    font-weight: bold;
+    color: #000;
+    margin-top: 2vw;
+}
+
+.home-page-link{
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.container img{
+    width: 500px;
+}

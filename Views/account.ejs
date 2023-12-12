@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>الحساب</title>
+    <!-- Set the page's icon -->
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png"/>
+    <!-- Import the index CSS -->
+    <link rel="stylesheet" href="/Styles/account.css"/>
+    <link rel="stylesheet" href="/Styles/footer.css"/>
+    <link rel="stylesheet" href="/Styles/header.css"/>
+    <!-- Import the page's JavaScript -->
+    <script src="/Scripts/account.js"></script>
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>
+    <!-- Set the header and footer -->
+    <script>
+
+      function checkUsernameCookie() {
+        let cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          let parts = cookies[i].split('=');
+          if (parts[0].trim() === 'username') {
+            return true;
+          }
+        }
+        return false;
+      }
+  
+      if (checkUsernameCookie()) {
+        $(function () {
+          $('#header').load('/assets/signedHeader.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      } else {
+        $(function () {
+          $('#header').load('/assets/header.html');
+          $('#footer').load('/assets/footer.html');
+        });
+      }
+    </script>
+  </head>
+  <body>
+  <!-- Loading screen -->
+  <div class="loading-container" id="loading">
+    <div class="loading-spinner">
+      <div class="image-container">
+        <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+      </div>
+    </div>
+  </div>
+    <!-- Begin the header -->
+    <header id="header"></header>
+
+    
+    <% if(errorMessage){ %>
+      <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+        <%= errorMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+      
+    <% if(successMessage){ %>
+      <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+        <%= successMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <!-- Begin the main -->
+    <main class="container-fluid">
+      <section class="container userinfo">
+        <div class="tab">
+            <button class="tablinks active" id="defult" onclick="openTab(event, 'Profile')">الحساب</button >
+            <button class="tablinks" onclick="openTab(event, 'Password')">كلمة المرور</button>
+            <button class="tablinks" onclick="openTab(event, 'Delete')">إزالة السجل</button>
+        </div>
+          <form action="/update-profile" method="post" id="Profile" class="tabcontent">
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-4">
+                <label for="firstName">اسم الأول</label>
+                <input class="form-control" type="text" id="fname" name="firstName" value="<%=user.firstName%>" minlength="1" maxlength="35" >
+                <p class="text-danger" id="fnameErr"></p>
+              </div>
+              <div class="col-4">
+                <label for="lastName" >اسم الأخير</label>
+                <input class="form-control" type="text" id="lname" name="lastName" value="<%= user.lastName%>" minlength="1" maxlength="35" >
+                <p class="text-danger" id="lnameErr"></p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-4">
+                <label for="phoneNumber" >رقم الجوال</label>
+                <input class="form-control" type="tel" name="phoneNumber" id="tel" value="<%= user.phoneNumber %>" min="10" max="10" >
+                <p class="text-danger" id="telErr"></p>
+              </div>
+              <div class="col-4">
+                <label for="dateOfBirth" >تاريخ ميلادك</label>
+                <input class="form-control" type="date" id="dob" name="dateOfBirth" value="<%=user.dateOfBirth%>">
+                <p class="text-danger" id="dobErr"></p>
+              </div>
+          </div>
+
+          <div class="d-flex flex-row justify-content-center">
+            <div class="col-4">
+              <label >ايميل</label>
+              <input class="form-control" id="email" type="email" name="email" value="<%=user.email%>" minlength="5" maxlength="50">
+              <p class="text-danger" id="emailErr"></p>
+            </div>
+        </div>
+          <div class="d-flex flex-row justify-content-center">
+            <input type="submit" onclick="submitUpdatProfile(event)" class="btn col-2" value="حدث">
+          </div>
+          </form>
+
+          <form action="/update-password" method="post" id="Password" class="tabcontent" style="display: none;">
+            <div class="row justify-content-center">
+              <div class="col-8">
+                <label for="oldPassword" >كلمة المرور الحالية</label>
+                <input class="form-control" type="password" id="oldPassword" name="oldPassword" min="8" max="32" >
+                <p class="text-danger" id="oldpasswordErr"></p>
+              </div>
+              <div class="col-8">
+                <label for="newPassword" >تغير كلمة المرور</label>
+                <input class="form-control" type="password" id="newPassword" name="newPassword" min="8" max="32" >
+                <p class="text-danger" id="newpasswordErr"></p>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <input type="submit" onclick="submitUpdatePassword(event)" class="btn col-6" value="حدث">
+            </div>
+          </form>
+          <form action="/delete-history" method="post" id="Delete" class="tabcontent" style="display: none; direction: rtl;">
+            <div class="row justify-content-center">
+                <h3 style="text-align: right;">الخطوة النهائية قبل إزالة ربط سجلك</h3>
+                <p style="text-align: right;">
+                    قبل المتابعة، نريد أن نوضح أن إزالة ربط سجلك ستفصل النتائج التحليلية التي قدمناها لك عن حسابك. هذه النتائج ستظل محفوظة في قاعدة بياناتنا ولكنها لن تعود مرتبطة بحسابك الشخصي.
+                </p>
+                <p style="text-align: right;">
+                    إذا كنت ترغب في الاحتفاظ بنسخة من سجلك أو النتائج التحليلية، يرجى تنزيلها الآن. نشكرك على الوقت الذي قضيته معنا ونتمنى لك التوفيق في مساعيك المستقبلية.
+                </p>
+                <div>
+                    <label for="historyUnlinkCheckbox" style="margin-right: 8px; font-weight: bold;">
+                        أوافق على إزالة ربط سجلي وأفهم أن هذا لا يحذف النتائج من قاعدة بياناتكم لكن يفصلها عن حسابي. <input class="form-check-input" type="checkbox" id="historyUnlinkCheckbox" name="unlinkConformation" style="border: 1px solid;" required>
+                    </label>
+                </div>
+                <input type="submit" value="أزل ربط سجلك" class="btn-red col-6">
+            </div>
+        </form>
+        </section>
+      </main>
+      
+      
+
+    
+    <!-- BeginTthe Footer -->
+    <footer id="footer"></footer>
+    <!-- Validator library -->
+  <script src="https://cdn.jsdelivr.net/npm/validator/validator.min.js"></script>
+  </body>
+</html>

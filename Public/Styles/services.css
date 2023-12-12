@@ -1,0 +1,123 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 55vh;
+  min-height: 400px;
+}
+
+#cardsContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card-img {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #666;
+}
+
+.card-btn {
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #006d77 !important;
+  border-color: white !important;
+  font-size: larger !important;
+}
+
+.btn-xl {
+  padding: 10px 40px !important;
+  font-size: 20px !important;
+  border-radius: 10px !important;
+}
+
+label {
+  font-size: larger;
+}
+
+.card-btn {
+  background-color: #006d77 !important;
+}
+
+#submiteurlform {
+  margin-top: 10%;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+#link {
+  display: inline;
+  height: 90px;
+  box-shadow: 0px 0px 15px #787878;
+  display: inline-block;
+  border-radius: 0 90px 90px 0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+input[type="url"]::placeholder {
+  font-size: x-large;
+  text-align: center;
+  font-weight: 800;
+  font-family: "Lato", sans-serif;
+}
+
+.enter-btn {
+  display: inline;
+  height: 90px;
+  border-radius: 90px 0 0 90px;
+  border: none;
+  box-shadow: 0px 0px 15px #787878;
+  background: #006d77;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.enter-btn:hover {
+  box-shadow: 0px 0px 25px #006d77;
+  text-shadow: 0px 0px 25px #ffffff;
+}

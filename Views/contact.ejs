@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا</title>
+    <!-- Set the page's icon -->
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png"/>
+    <!-- Import the contactus CSS -->
+    <link rel="stylesheet" href="/Styles/contactus.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <!-- Import the contactus JavaScript -->
+    <script src="/Scripts/contactus.js" defer></script>
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+     <!-- jQuery library -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>
+     <!-- Set the header and footer -->
+    <script>
+
+        function checkUsernameCookie() {
+          let cookies = document.cookie.split('; ');
+          for (let i = 0; i < cookies.length; i++) {
+            let parts = cookies[i].split('=');
+            if (parts[0].trim() === 'username') {
+              return true;
+            }
+          }
+          return false;
+        }
+    
+        if (checkUsernameCookie()) {
+          $(function () {
+            $('#header').load('/assets/signedHeader.html');
+            $('#footer').load('/assets/footer.html');
+          });
+        } else {
+          $(function () {
+            $('#header').load('/assets/header.html');
+            $('#footer').load('/assets/footer.html');
+          });
+        }
+      </script>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner">
+        <div class="image-container">
+          <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+        </div>
+      </div>
+    </div>
+    <!-- Begin the header -->
+    <header id="header"></header>
+
+      <!-- Begin the form section-->
+    <main class="container-fluid">
+        <section class="row p-4 d-flex justify-content-center align-items-center">
+            
+            <form action="/contact" method="post" class="col-sm-6 p-4 glass">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="fname">الاسم الأول:</label>
+                        <input type="text" class="form-control" id="fname" name="fname" autofocus value="<%= formValues.fname %>" minlength="1" maxlength="35" pattern="^(?=.{2,35}$)[a-zA-Z\u0600-\u06FF]+(\s{0,1}[a-zA-Z\u0600-\u06FF]+)?$" required>
+                        <p class="text-danger" id="fnameLabel"><%= errorMessages.fname %></p>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="lname">الاسم الأخير:</label>
+                        <input type="text" class="form-control" id="lname" name="lname" value="<%= formValues.lname %>" minlength="1" maxlength="35" pattern="^(?=.{2,35}$)[a-zA-Z\u0600-\u06FF]+(\s{0,1}[a-zA-Z\u0600-\u06FF]+)?$" required>
+                        <p class="text-danger" id="lnameLabel"><%= errorMessages.lname %></p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= formValues.email %>" minlength="5" maxlength="50" pattern="^(?=.{5,50}$)[a-zA-Z0-9]+([.!#$%&'*+\-\/=?^_`{|}~]?[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" required>
+                    <p class="text-danger" id="emailLabel"><%= errorMessages.email %></p>
+                </div>
+    
+                <div class="form-group">
+                    <label for="subject">الموضوع:</label>
+                    <select class="form-control" id="subject" name="subject" required>
+                        <option value="" disabled selected>اختر الموضوع</option>
+                        <option value="general-inquiry">استفسار عام</option>
+                        <option value="technical-issues">مشاكل فنية</option>
+                        <option value="report-issues">مشاكل في التقرير</option>
+                        <option value="suggestions">اقتراحات</option>
+                        <option value="account-support">دعم الحساب</option>
+                        <option value="language-support">دعم اللغة</option>
+                    </select>
+                    
+                    
+                    <p class="text-danger" id="subjectLabel"> <%= errorMessages.subject %></p>
+                </div>
+    
+                <div class="form-group">
+                    <label for="message">الرسالة:</label>
+                    <textarea class="form-control no-resize" id="message" name="message" rows="4" pattern="^(?=.{1,255}$)[a-zA-Z0-9\u0600-\u06FF,.?!:;'-]+(\s*[a-zA-Z0-9\u0600-\u06FF,.?!:;'-]+)*$" required><%= formValues.message %></textarea>
+                    <p class="text-danger" id="messageLabel"><%= errorMessages.message %></p>
+                </div>
+    
+                <button type="submit" id="submitbtn" value="submit" class="btn mt-3 col-4">إرسال</button>
+            </form>
+            
+            <div class="col-sm-6 d-flex justify-content-center align-items-center illus">
+                <img src="/Media/Images/Contact/form-filling.png" class="img-fluid" alt="">
+            </div>
+        </section>
+        
+    </main>
+      
+      <!-- Begin Tthe Footer -->
+    <footer id="footer"></footer>
+</body>
+</html>

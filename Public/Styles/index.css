@@ -1,0 +1,236 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+section{
+  margin-top: 200px;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  animation: fadeInUp 1s ease-out;
+  padding: 20px; /* Added padding for visual spacing */
+}
+
+main section h1{
+  position: relative;
+  font-size: 80px;
+  font-family: "Lato", sans-serif;
+  color: #006D77;
+  direction: ltr;
+}
+
+main section h1:hover{
+  animation: wobble 3s ease 0s 1 normal forwards;
+}
+
+@keyframes wobble {
+	0%,
+	100% {
+		transform: translateX(0%);
+		transform-origin: 50% 50%;
+	}
+
+	15% {
+		transform: translateX(-30px) rotate(-6deg);
+	}
+
+	30% {
+		transform: translateX(15px) rotate(6deg);
+	}
+
+	45% {
+		transform: translateX(-15px) rotate(-3.6deg);
+	}
+
+	60% {
+		transform: translateX(9px) rotate(2.4deg);
+	}
+
+	75% {
+		transform: translateX(-6px) rotate(-1.2deg);
+	}
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main section p{
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1.5;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  color: #00474E;
+}
+
+main section img{
+  max-width: 100%;
+  display: inline-block;
+
+}
+
+
+button{
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  margin: 20px 10px;
+  font-weight: bold;
+  border: 2px solid #006D77;
+  border-radius: 25px !important;
+  background: transparent;
+  color: #006D77;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+button span{
+  background: #006D77;
+  height: 100%;
+  width: 0%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+button:hover span{
+  width: 100%;
+  
+}
+
+button:hover{
+  color: #FFFFFF;
+  border: 0px;
+  background-color: #00474E;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+main section div.main-buttons{
+  display: inline-block;
+}
+.welcoming-section{
+  height: 80vh;
+  min-height: fit-content;
+}
+main section div.main-header{
+  width: 100%;
+  text-align: center;
+}
+
+.aboutservice{
+  text-align: center;
+  margin-top: 30px;
+  width: 100%;
+  color: white;
+  overflow: hidden;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.aboutservice img{
+  width: 90%;
+  padding: 30px;
+}
+
+#service2{
+
+}
+
+.viewservice{
+  min-height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.abouttext{
+  width: 40%;
+  color: #00474E;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+}
+.abouttext h2{
+  font-size: 50px;
+}
+
+.abouttext p{
+  font-size: 30px;
+}
+
+.aboutimg{
+  width: 50%;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media screen and (max-width: 1024px){
+  main section h2{
+    font-size: 50px;
+  }
+  main section p{
+    font-size: 30px ;
+  }
+  .abouttext h2{
+    font-size: 35px;
+  }
+  
+  .abouttext p{
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 764px){
+
+  main section h2{
+    font-size: 70px;
+  }
+  main section p{
+    font-size: 40px ;
+  }
+  .abouttext h2{
+    font-size: 30px;
+  }
+  
+  .abouttext p{
+    font-size: 20px;
+  }
+  button{
+    width: 200px ;
+  }
+  .viewservice{
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .abouttext{
+    width: 100%;
+  }
+  
+  .aboutimg{
+    width: 100%;
+  }
+}

@@ -1,0 +1,104 @@
+@font-face {
+  font-family: "Lato";
+  src: url("../Fonts/Lato-Regular.ttf") format("truetype");
+}
+
+
+.about-us {
+  padding: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.flex {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 20px;
+}
+
+.about-us h2 {
+  font-size: 45px;
+  margin-bottom: 20px;
+  color: #006d77;
+}
+
+.about-us h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #009baa;
+}
+
+.about-us p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #006d77;
+}
+
+.about-us img{
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.social{
+  margin-bottom: 20px;
+}
+.social a{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 10px;
+  color: white;
+  background-color: #006d77;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.324);
+  transition: all 0.3s ease-in-out;
+}
+.social a:hover{
+  transform: scale(1.5);
+  box-shadow: 0 0px 15px #00eaff6a;
+}
+.contact-btn{
+  padding: 20px;
+  background-color: #006d77;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+  border: 2px solid #009caa00;
+}
+.contact-btn:hover{
+  background-color: white;
+  color: #009baa;
+  border: 2px solid #009baa;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .row{
+    flex-direction: column;
+  }
+  .flex{
+    max-width: 100%;
+  }
+  .about-us h2{
+    font-size: 30px;
+  }
+  .about-us p{
+    font-size: 16px;
+  }
+  .social a{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>كلمة مرور لمرة واحدة</title>
+    <!-- Set the page's icon -->
+    <link rel="icon" href="/Media/Images/WebSift/WibSift.png"/>
+    <!-- Import the index CSS -->
+    <link rel="stylesheet" href="/Styles/otp.css"/>
+    <!-- Import the page's JavaScript -->
+    <script src="/Scripts/otp.js" defer></script>
+    <!-- Import the bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Import the bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Boxicons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Import Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="/Styles/loading.css" />
+    <!-- Loading JavaScript -->
+    <script src="/Scripts/loading.js"></script>
+  </head>
+  <body>
+      <!-- Loading screen -->
+      <div class="loading-container" id="loading">
+        <div class="loading-spinner">
+          <div class="image-container">
+            <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+          </div>
+        </div>
+      </div>
+    <% if(errorMessage){ %>
+      <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+        <%= errorMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <% if(successMessage){ %>
+      <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+        <%= successMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <!-- Begin the main -->
+    <main>
+      <section class="container">
+        <div class="icon">
+            <i class="bx bxs-check-shield"></i>
+        </div>
+        <h4>ادخل رمز التحقق</h4>
+        <form action="/verifyOTP" method="post">
+            <div class="input-field" dir="ltr">
+                <input type="number" autofocus>
+                <input type="number" disabled>
+                <input type="number" disabled>
+                <input type="number" disabled>
+            </div>
+            <input type="hidden" name="OTP" value="">
+            <button class="check">تحقق</button>
+        </form>
+        <form action="/resendOTP" method="post">
+          <button class="resend" type="submit">ارسل الرمز مرة اخرى</button>
+        </form>
+      </section>
+    </main>
+
+  </body>
+</html>

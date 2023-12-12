@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التسجيل</title>
+  </script>
+  <!-- Set the page's icon -->
+  <link rel="icon" href="/Media/Images/WebSift/WibSift.png" />
+  <!-- Page's CSS -->
+  <link rel="stylesheet" href="/Styles/signup.css" />
+  <!-- Import the bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- Import the bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Loading CSS -->
+  <link rel="stylesheet" href="/Styles/loading.css" />
+  <!-- Loading JavaScript -->
+  <script src="/Scripts/loading.js"></script>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner">
+        <div class="image-container">
+          <img src="/Media/Images/WebSift/WibSift.png" alt="صورة تحميل الصفحة">
+        </div>
+      </div>
+    </div>
+  <% if(errorMessage){ %>
+    <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+      <%= errorMessage %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  <main class="container d-flex">
+    
+    <section class="slider">
+      
+
+      <h3>عزز إمكانية الوصول إلى موقعك مع WebSift!</h3>
+      <h5>انشئ حسابك مجاناً</h5>
+      <p>اذا كان لديك حساب سجل دخولك</p>
+      
+      <div class="create-account">
+        <a href="/login">سجل دخولك</a>
+      </div>
+      
+    </section>
+
+    <section class="login">
+      <div class="logo-and-title">
+        <a class="m-2" href="/" title="العودة للصفحة الرئيسية"><img src="/Media/Images/WebSift/WibSift.png"
+            alt="شعار ويب سيفت"></a>
+        <h3 class="m-2">إنشاء الحساب</h3>
+        <span class="line"></span>
+      </div>
+      <form action="/signup" method="post" class="container-fluid">
+
+        <div class="multi-input-container">
+          <div class="input-field-mult">
+            <input type="text" name="fname" id="fname" value="<%= formValues.fname %>" min="2" max="35" required pattern="^[a-zA-Z\u0600-\u06FF]+(\s{0,1}[a-zA-Z\u0600-\u06FF]+)?$">
+            <div class="labelline">الإسم الأول</div>
+            <br>
+            <p class="errorMessage " id="fnameErr"><%= errorMessages.fname %></p>
+          </div>
+          <div class="input-field-mult">
+            <input type="text" name="lname" id="lname" value="<%= formValues.lname %>" min="2" max="35" required pattern="^[a-zA-Z\u0600-\u06FF]+(\s{0,1}[a-zA-Z\u0600-\u06FF]+)?$">
+            <div class="labelline">الإسم الأخير</div>
+            <br>
+            <p class="errorMessage " id="lnameErr"><%= errorMessages.lname %></p>
+          </div>
+        </div>
+        
+
+        <div class="input-field">
+          <input type="email" name="email" id="email" value="<%= formValues.email %>" min="5" max="32" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+          <div class="labelline">البريد الإلكتروني</div>
+          <br>
+          <p class="errorMessage " id="emailErr"><%= errorMessages.email %></p>
+        </div>
+
+        <div class="input-field">
+          <input type="tel" name="tel" id="tel" value="<%= formValues.tel %>" min="10" max="10" required pattern="^05[03456789][0-9]{7}$">
+          <div class="labelline">رقم الجوال</div>
+          <br>
+          <p class="errorMessage " id="telErr"><%= errorMessages.tel %></p>
+        </div>
+
+        <div class="input-field">
+          <input type="date" name="dob" id="dob" value="<%= formValues.dob %>">
+          <div class="labelline">تاريخ الميلاد</div>
+          <br>
+          <p class="errorMessage " id="dobErr"><%= errorMessages.dob %></p>
+        </div>
+        
+        <div class="input-field">
+          <input type="password" name="password" id="password" value="<%= formValues.password %>" min="8" max="32" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).*$">
+          <div class="labelline">كلمة المرور</div>
+          <br>
+          <p class="errorMessage " id="passwordErr"><%= errorMessages.password %></p>
+        </div>
+
+        <div class="link-div col-8 login-link">
+          <p>لديك حساب بالفعل؟ <a href="/login" class="link">سجل دخولك</a></p>
+        </div>
+
+        <div class="row justify-content-center">
+          <p class="password-reqs col-8">كلمة المرور يجب ان تكون بين 8-32 حرف، وتحتوي على أحرف كبيرة وصغيرة وارقام ورموز خاصة (!@#$%^&*_=+-).</p>
+        </div>
+
+        <button type="submit" value="submit" class="btn col-4" id="submitbtn">انشئ الحساب</button>
+
+      </form>
+    </section>
+
+    
+    
+  </main>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Validator library -->
+  <script src="https://cdn.jsdelivr.net/npm/validator/validator.min.js"></script>
+  <!-- page's script -->
+  <script src="/Scripts/signup.js"></script>
+  
+  
+  
+</body>
+
+</html>
